@@ -1,0 +1,30 @@
+export const lastMovements = [
+  {
+    id: 1,
+    mode: 'pix',
+    type: 'gasto',
+    value: '200,00',
+    date: '03/10/2023',
+    source: 'Contas',
+    description: 'Pagamento de conta de luz',
+  },
+  {
+    id: 2,
+    mode: 'credito',
+    type: 'ganho',
+    value: '480,00',
+    date: '04/10/2023',
+    source: 'Cliente',
+    clientId: '1',
+    description: 'Pedido do Vitinho e da Jéssica',
+  },
+  {
+    id: 3,
+    mode: 'debito',
+    type: 'gasto',
+    value: '180,00',
+    date: '07/10/2023',
+    source: 'Material',
+    description: 'Lista de material #1',
+  },
+]

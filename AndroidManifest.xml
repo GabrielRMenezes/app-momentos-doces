@@ -1,0 +1,4 @@
+<application
+  ...
+  android:supportsRtl="true">
+<uses-permission android:name="android.permission.INTERNET" />
