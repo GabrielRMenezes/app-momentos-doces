@@ -4,9 +4,18 @@ import { View, StyleSheet, Text } from 'react-native'
 export default function Balance({ data }) {
   let totalGasto = 0
   let totalGanho = 0
+  const parseValue = (value) => {
+    if (typeof value === 'string') {
+      return parseFloat(value.replace(',', '.'))
+    } else if (typeof value === 'number') {
+      return value
+    } else {
+      return 0
+    }
+  }
 
   data.forEach((movement) => {
-    const valor = parseFloat(movement.value.replace(',', '.'))
+    const valor = parseValue(movement.value)
     if (movement.type === 'gasto') {
       totalGasto += valor
     } else if (movement.type === 'ganho') {

@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../pages/HomeScreen'
 import Login from '../pages/LoginScreen'
 import CreateLogin from '../pages/CreateLoginFormScreen'
+import EditTransaction from '../pages/EditTransactionScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -21,6 +22,11 @@ export default function AppRoutes() {
       <Stack.Screen
         name="Register"
         component={CreateLogin}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EditTransaction"
+        component={EditTransaction}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

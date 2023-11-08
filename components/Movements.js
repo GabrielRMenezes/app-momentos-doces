@@ -2,27 +2,22 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default function Movements({ data }) {
-  const [showValue, setShowValue] = useState(false)
+  const [showValue, setShowValue] = useState(true)
   const valueColor = data.type === 'ganho' ? '#2ecc71' : '#e74c3c'
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => setShowValue(!showValue)}
-    >
-      <View style={styles.container}>
-        <Text style={styles.date}>{data.date}</Text>
-        <View style={styles.content}>
-          <Text style={styles.title}>{data.description}</Text>
-          {showValue ? (
-            <Text style={{ ...styles.value, color: valueColor }}>
-              {data.type === 'ganho' ? `R$ ${data.value}` : `R$ -${data.value}`}
-            </Text>
-          ) : (
-            <View style={styles.hideValue}></View>
-          )}
-        </View>
+    <View style={styles.container}>
+      <Text style={styles.date}>{data.date}</Text>
+      <View style={styles.content}>
+        <Text style={styles.title}>{data.description}</Text>
+        {showValue ? (
+          <Text style={{ ...styles.value, color: valueColor }}>
+            {data.type === 'ganho' ? `R$ ${data.value}` : `R$ -${data.value}`}
+          </Text>
+        ) : (
+          <View style={styles.hideValue}></View>
+        )}
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

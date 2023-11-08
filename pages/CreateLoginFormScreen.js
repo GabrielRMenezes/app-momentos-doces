@@ -6,12 +6,15 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
+  ToastAndroid,
 } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import * as Animate from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
-import { insertUser } from '../Routes/createUser'
 import uuid from 'react-native-uuid'
+import { openDatabase } from 'expo-sqlite'
+
+const db = openDatabase('app.db')
 
 export default function CreateLogin() {
   const navigation = useNavigation()
@@ -30,21 +33,33 @@ export default function CreateLogin() {
     } else if (password.length !== 3) {
       setErrorMessage('A senha deve ter 3 dígitos')
     } else {
-      const userId = uuid.v4()
-      const newUser = {
-        userId,
-        name,
-        login,
-        password,
-        gender,
-      }
-      console.log(newUser)
-      const success = await insertUser(newUser)
+      try {
+        const userId = uuid.v4()
 
-      if (success) {
-        navigation.navigate('Login')
-      } else {
-        setErrorMessage('Erro ao criar usuário')
+        db.transaction((tx) => {
+          tx.executeSql(
+            'INSERT INTO users (userId, name, login, password, gender) values (?, ?, ?, ?, ?)',
+            [userId, name, login, password, gender],
+            (_, resultSet) => {
+              ToastAndroid.showWithGravityAndOffset(
+                'Cadastro Realizado, faça Login',
+                ToastAndroid.LONG,
+                ToastAndroid.TOP,
+                25,
+                50,
+              )
+              setTimeout(() => navigation.replace('Login'), 1500)
+            },
+            (_, error) => {
+              // Se ocorrer um erro, mostre uma mensagem
+              console.error('Erro ao inserir usuário:', error)
+              setErrorMessage('Erro ao criar usuário.')
+            },
+          )
+        })
+      } catch (error) {
+        console.error('Erro ao criar usuário:', error)
+        setErrorMessage('Erro ao criar usuário.')
       }
     }
   }
