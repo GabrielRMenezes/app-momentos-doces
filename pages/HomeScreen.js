@@ -1,16 +1,8 @@
-import { StatusBar } from 'expo-status-bar'
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Balance from '../components/Balance'
 import Movements from '../components/Movements'
-import { lastMovements } from '../constants/moviments'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import CreateTransactionForm from '../components/CreateTransactionForm'
 import * as SQLite from 'expo-sqlite'

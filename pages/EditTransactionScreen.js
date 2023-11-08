@@ -15,8 +15,6 @@ const db = SQLite.openDatabase('app.db')
 
 export default function EditTransactions() {
   const navigation = useNavigation()
-  const [currentUser, setCurrentUser] = useState(null)
-  const [isTransactionFormVisible, setTransactionFormVisible] = useState(false)
   const [reversedMovements, setReversedMovements] = useState([])
   const [selectedTransaction, setSelectedTransaction] = useState(null)
   const [isEditModalVisible, setIsEditModalVisible] = useState(false)

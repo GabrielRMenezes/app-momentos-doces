@@ -14,12 +14,7 @@ const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 22
   : 64
 
-export default function Header({
-  name,
-  gender,
-  onAddTransaction,
-  TransactionList,
-}) {
+export default function Header({ name, gender, onAddTransaction }) {
   const [isModalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
   const toggleModal = () => {

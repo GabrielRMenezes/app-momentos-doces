@@ -11,7 +11,6 @@ import {
 import * as Animate from 'react-native-animatable'
 import uuid from 'react-native-uuid'
 import CurrencyInput from 'react-native-currency-input'
-import { useNavigation } from '@react-navigation/native'
 import { openDatabase } from 'expo-sqlite'
 
 const db = openDatabase('app.db')
@@ -26,7 +25,6 @@ export default function CreateTransactionForm({
   const [value, setValue] = useState(0)
   const [source, setSource] = useState('')
   const [description, setDescription] = useState('')
-  const navigation = useNavigation()
 
   const handleAddTransaction = async () => {
     if (!mode || !type || !value || !source || !description) {

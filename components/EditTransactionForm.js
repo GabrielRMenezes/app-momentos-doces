@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import {
   Modal,
@@ -6,7 +7,6 @@ import {
   TouchableOpacity,
   TextInput,
   StyleSheet,
-  Button,
 } from 'react-native'
 import CurrencyInput from 'react-native-currency-input'
 import * as SQLite from 'expo-sqlite'
@@ -45,6 +45,7 @@ export default function EditTransactionForm({
       tx.executeSql(
         'UPDATE transactions SET mode = ?, type = ?, value = ?, source = ?, description = ? WHERE transactionId = ?',
         [mode, type, value, source, description, transactionId],
+
         (_, result) => {
           onTransactionUpdated()
           onClose()
