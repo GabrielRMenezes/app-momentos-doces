@@ -1,4 +1,3 @@
-// HomeScreen.js
 import { StatusBar } from 'expo-status-bar'
 import {
   FlatList,
@@ -13,7 +12,7 @@ import Balance from '../components/Balance'
 import Movements from '../components/Movements'
 import { lastMovements } from '../constants/moviments'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import CreateTransactionForm from '../components/CreateTransactionForm' // Certifique-se de importar o componente TransactionForm.
+import CreateTransactionForm from '../components/CreateTransactionForm'
 import * as SQLite from 'expo-sqlite'
 
 const db = SQLite.openDatabase('app.db')

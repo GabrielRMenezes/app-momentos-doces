@@ -42,7 +42,7 @@ export default function CreateTransactionForm({
       value: parseFloat(value),
       source,
       description,
-      date: new Date().toISOString(), // Adicione a data atual como string ISO
+      date: new Date().toISOString(),
     }
 
     db.transaction((tx) => {
@@ -59,8 +59,8 @@ export default function CreateTransactionForm({
         ],
         () => {
           console.log('Transação inserida com sucesso!')
-          onAddTransaction(newTransaction) // Chamada de callback para informar a tela Home sobre a nova transação
-          onClose() // Fechar o formulário de transação
+          onAddTransaction(newTransaction)
+          onClose()
         },
         (error) => {
           console.error('Erro ao inserir a transação: ', error)

@@ -1,4 +1,3 @@
-// HomeScreen.js
 import {
   FlatList,
   StyleSheet,
@@ -47,17 +46,15 @@ export default function EditTransactions() {
   }, [])
 
   const handleTransactionUpdated = () => {
-    // Chamado quando uma transação é atualizada.
-    fetchTransactions() // Isto vai recarregar as transações do banco de dados
+    fetchTransactions()
   }
 
   const handleTransactionDeleted = () => {
-    // Chamado quando uma transação é excluída.
-    fetchTransactions() // Isto vai recarregar as transações do banco de dados
+    fetchTransactions()
   }
 
   const handleGoBack = () => {
-    navigation.navigate('Home') // Substitua 'Home' pelo nome da sua tela inicial
+    navigation.navigate('Home')
   }
 
   const handleRefresh = () => {

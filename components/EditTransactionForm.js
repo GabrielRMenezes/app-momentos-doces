@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Button,
 } from 'react-native'
-import CurrencyInput from 'react-native-currency-input' // Certifique-se de ter esta biblioteca instalada.
+import CurrencyInput from 'react-native-currency-input'
 import * as SQLite from 'expo-sqlite'
 import * as Animate from 'react-native-animatable'
 import { Picker } from '@react-native-picker/picker'
@@ -22,7 +22,6 @@ export default function EditTransactionForm({
   onTransactionUpdated,
   onTransactionDeleted,
 }) {
-  // Estados para controlar os valores do formulário
   const [mode, setMode] = useState('')
   const [type, setType] = useState('')
   const [value, setValue] = useState('')
@@ -30,7 +29,6 @@ export default function EditTransactionForm({
   const [description, setDescription] = useState('')
   const [transactionId, setTransactionId] = useState(null)
 
-  // Carregar os dados da transação para edição
   useEffect(() => {
     if (transaction) {
       setMode(transaction.mode)
@@ -43,14 +41,13 @@ export default function EditTransactionForm({
   }, [transaction])
 
   const handleUpdateTransaction = () => {
-    // Lógica para atualizar a transação no banco de dados
     db.transaction((tx) => {
       tx.executeSql(
         'UPDATE transactions SET mode = ?, type = ?, value = ?, source = ?, description = ? WHERE transactionId = ?',
         [mode, type, value, source, description, transactionId],
         (_, result) => {
-          onTransactionUpdated() // Callback para informar que a transação foi atualizada
-          onClose() // Fechar o modal
+          onTransactionUpdated()
+          onClose()
         },
         (_, error) => {
           console.error('Erro ao atualizar a transação:', error)
@@ -60,14 +57,13 @@ export default function EditTransactionForm({
   }
 
   const handleDeleteTransaction = () => {
-    // Lógica para deletar a transação no banco de dados
     db.transaction((tx) => {
       tx.executeSql(
         'DELETE FROM transactions WHERE transactionId = ?',
         [transaction.id],
         (_, result) => {
-          onTransactionDeleted() // Callback para informar que a transação foi deletada
-          onClose() // Fechar o modal
+          onTransactionDeleted()
+          onClose()
         },
         (_, error) => {
           console.error('Erro ao deletar a transação:', error)

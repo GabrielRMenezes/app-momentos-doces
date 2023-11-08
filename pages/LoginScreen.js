@@ -33,7 +33,6 @@ export default function Login() {
         async (_, { rows }) => {
           if (rows.length > 0) {
             const user = rows._array[0]
-            // Armazenar o ID do usuário no AsyncStorage
             await AsyncStorage.setItem('userId', user.userId)
             navigation.navigate('Home')
           } else {
