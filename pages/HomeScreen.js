@@ -21,40 +21,39 @@ export default function HomeScreen() {
     console.log('Editar transações')
   }
 
+  const fetchTransactions = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM transactions',
+        [],
+        (_, { rows }) => {
+          const loadedTransactions = rows._array
+          setReversedMovements(loadedTransactions.reverse())
+        },
+        (_, error) => {
+          console.error('Erro ao buscar as transações:', error)
+        },
+      )
+    })
+  }
+  const fetchUser = async () => {
+    const userId = await AsyncStorage.getItem('userId')
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT name, gender FROM users WHERE userId = ?',
+        [userId],
+        (_, { rows }) => {
+          if (rows.length > 0) {
+            setCurrentUser(rows._array[0])
+          }
+        },
+        (_, error) => {
+          console.error('Erro ao buscar informações do usuário:', error)
+        },
+      )
+    })
+  }
   useEffect(() => {
-    const fetchTransactions = () => {
-      db.transaction((tx) => {
-        tx.executeSql(
-          'SELECT * FROM transactions',
-          [],
-          (_, { rows }) => {
-            const loadedTransactions = rows._array
-            setReversedMovements(loadedTransactions.reverse())
-          },
-          (_, error) => {
-            console.error('Erro ao buscar as transações:', error)
-          },
-        )
-      })
-    }
-    const fetchUser = async () => {
-      const userId = await AsyncStorage.getItem('userId')
-      db.transaction((tx) => {
-        tx.executeSql(
-          'SELECT name, gender FROM users WHERE userId = ?',
-          [userId],
-          (_, { rows }) => {
-            if (rows.length > 0) {
-              setCurrentUser(rows._array[0])
-            }
-          },
-          (_, error) => {
-            console.error('Erro ao buscar informações do usuário:', error)
-          },
-        )
-      })
-    }
-
     fetchUser()
     fetchTransactions()
   }, [])

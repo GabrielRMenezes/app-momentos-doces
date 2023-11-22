@@ -61,7 +61,7 @@ export default function EditTransactionForm({
     db.transaction((tx) => {
       tx.executeSql(
         'DELETE FROM transactions WHERE transactionId = ?',
-        [transaction.id],
+        [transactionId],
         (_, result) => {
           onTransactionDeleted()
           onClose()

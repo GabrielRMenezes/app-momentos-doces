@@ -55,9 +55,9 @@ export default function EditTransactions() {
     navigation.navigate('Home')
   }
 
-  const handleRefresh = () => {
-    fetchTransactions()
-  }
+  // const handleRefresh = () => {
+  //   fetchTransactions()
+  // }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Últimas movimentações</Text>
@@ -80,10 +80,7 @@ export default function EditTransactions() {
         onTransactionUpdated={handleTransactionUpdated}
         onTransactionDeleted={handleTransactionDeleted}
       />
-      <TouchableOpacity onPress={handleRefresh} style={styles.button}>
-        <Text style={styles.textTitle}>Atualizar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleGoBack} style={styles.button}>
+      <TouchableOpacity onPress={handleGoBack} style={styles.buttonHome}>
         <Text style={styles.textTitle}>Início</Text>
       </TouchableOpacity>
     </View>
@@ -122,6 +119,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     margin: 4,
     width: '50%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonHome: {
+    backgroundColor: '#fafafa',
+    borderRadius: 50,
+    margin: 4,
+    width: '40%',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
